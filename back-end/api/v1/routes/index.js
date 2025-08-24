@@ -16,6 +16,9 @@ if (!videoRoutes) {
   throw new Error('videoRoutes import failed! Make sure video-routes.js has `export default router;`');
 }
 
+console.log('userRoutes is:', userRoutes);
+console.log('videoRoutes is:', videoRoutes);
+
 // User routes
 indexRoute.use('/user', userRoutes);
 
