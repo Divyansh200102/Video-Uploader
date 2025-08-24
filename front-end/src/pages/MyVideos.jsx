@@ -10,6 +10,7 @@ function MyVideos() {
         const res = await axios.get("/videos/all");
         setVideos(res.data.videos);
       } catch (err) {
+        console.error("Failed to fetch videos:", err);
         alert("Failed to fetch videos");
       }
     };
@@ -29,7 +30,7 @@ function MyVideos() {
               <div key={idx} className="bg-white p-4 rounded shadow">
                 <video controls className="w-full rounded-md mb-2">
                   <source
-                    src={`video-uploader-backend-five.vercel.app/upload/${filename}`}
+                    src={`https://video-uploader-backend-five.vercel.app/upload/${filename}`} // Added https://
                     type="video/mp4"
                   />
                   Your browser does not support the video tag.
