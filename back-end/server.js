@@ -12,7 +12,12 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: "https://video-uploader-frontend-lime.vercel.app", // allow your frontend
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
+
 app.use(express.json());
 app.use(fileUpload({ limits: { fileSize: 5 * 1024 * 1024 } }));
 app.use('/upload', express.static('uploads'));
