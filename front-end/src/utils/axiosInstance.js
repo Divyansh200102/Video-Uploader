@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "http://localhost:7777/api/v1", // adjust to your backend port
+  baseURL: "https://video-uploader-alpha.vercel.app/api/v1", // adjust to your backend port
 });
 
 instance.interceptors.request.use((config) => {

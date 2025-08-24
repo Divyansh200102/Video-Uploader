@@ -29,7 +29,7 @@ function MyVideos() {
               <div key={idx} className="bg-white p-4 rounded shadow">
                 <video controls className="w-full rounded-md mb-2">
                   <source
-                    src={`http://localhost:7777/upload/${filename}`}
+                    src={`https://video-uploader-alpha.vercel.app/upload/${filename}`}
                     type="video/mp4"
                   />
                   Your browser does not support the video tag.
