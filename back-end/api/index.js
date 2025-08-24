@@ -1,5 +1,4 @@
 import express from 'express';
-import chalk from 'chalk';
 import dotenv from 'dotenv';
 import fileUpload from 'express-fileupload';
 import cors from 'cors';
@@ -58,10 +57,10 @@ app.use((error, req, res, next) => {
 // Connect to database
 createConnection()
   .then(() => {
-    console.log('Database connected');
+    console.log('✅ Database connected');
   })
   .catch((err) => {
-    console.error('DB connection failed:', err);
+    console.error('❌ DB connection failed:', err);
   });
 
 export default app;

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "api/index.js",
-  "type": "commonjs",
+  "type": "module",
   "dependencies": {
     "accepts": "^2.0.0",
     "bcrypt": "^6.0.0",
