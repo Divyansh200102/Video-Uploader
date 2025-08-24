@@ -2,9 +2,9 @@ import express from 'express';
 import chalk from 'chalk';
 import dotenv from 'dotenv';
 import fileUpload from 'express-fileupload';
-import cors from 'cors'; // ✅ Changed to import
+import cors from 'cors';
 
-import { indexRoute } from './api/v1/routes/index.js';
+import indexRoute from './api/v1/routes/index.js'; // Changed to default import
 import { Error404 } from './utils/middlewares/404.js';
 import { createConnection } from './utils/db/connection.js';
 
@@ -14,9 +14,9 @@ const app = express();
 
 const corsOptions = {
   origin: [
-     'https://video-uploader-frontend-kohriytor.vercel.app',
+    'https://video-uploader-frontend-kohriytor.vercel.app',
     'http://localhost:3000',
-    'http://localhost:5173' // Add this for Vite if needed
+    'http://localhost:5173'
   ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
@@ -25,16 +25,32 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-
-// Add this middleware to handle preflight requests
 app.options('*', cors(corsOptions));
 
 app.use(express.json());
 app.use(fileUpload({ limits: { fileSize: 5 * 1024 * 1024 } }));
 app.use('/upload', express.static('uploads'));
 
+// Root route
+app.get('/', (req, res) => {
+  res.json({ 
+    message: 'Video Uploader API - Local Development',
+    status: 'OK',
+    timestamp: new Date().toISOString()
+  });
+});
+
 app.use('/api/v1', indexRoute);
 app.use(Error404);
+
+// Global error handler
+app.use((error, req, res, next) => {
+  console.error('Global error:', error);
+  res.status(500).json({
+    error: 'Internal server error',
+    message: error.message
+  });
+});
 
 // For Vercel, we need to export the app
 export default app;

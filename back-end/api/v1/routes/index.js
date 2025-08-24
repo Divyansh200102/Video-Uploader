@@ -3,7 +3,7 @@ import { auth } from '../../../utils/middlewares/auth.js';
 import userRoutes from './user-routes.js';
 import videoRoutes from './video-routes.js';
 
-export const indexRoute = express.Router();
+const indexRoute = express.Router();
 
 console.log('userRoutes is:', userRoutes);
 console.log('videoRoutes is:', videoRoutes);
@@ -20,6 +20,11 @@ indexRoute.use('/user', userRoutes);
 
 // Video routes with auth
 indexRoute.use('/videos', auth, videoRoutes);
+
+// Health check route
+indexRoute.get('/health', (req, res) => {
+  res.status(200).json({ status: 'OK', message: 'API v1 is running' });
+});
 
 // Optional: catch-all for undefined routes under /api/v1
 indexRoute.all('*', (req, res) => {
