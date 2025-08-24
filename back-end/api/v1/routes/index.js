@@ -1,3 +1,4 @@
+// api/v1/routes/index.js - Fixed version
 import express from 'express';
 import { auth } from '../../../utils/middlewares/auth.js';
 import userRoutes from './user-routes.js';
@@ -34,3 +35,6 @@ indexRoute.all('*', (req, res) => {
     method: req.method
   });
 });
+
+// Export as default (this is the key fix!)
+export default indexRoute;
