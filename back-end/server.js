@@ -17,7 +17,6 @@ const corsOptions = {
   origin: [
     'https://video-uploader-frontend-qf3tpepiv.vercel.app',
     'http://localhost:3000', // for local development
-    'https://your-custom-domain.com' // if you have a custom domain
   ],
   credentials: true,
   optionsSuccessStatus: 200
