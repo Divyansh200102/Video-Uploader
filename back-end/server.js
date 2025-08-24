@@ -14,7 +14,7 @@ const app = express();
 
 const corsOptions = {
   origin: [
-    'https://video-uploader-frontend-lime.vercel.app', // ✅ Fixed URL
+     'https://video-uploader-frontend-kohriytor.vercel.app',
     'http://localhost:3000',
     'http://localhost:5173' // Add this for Vite if needed
   ],
