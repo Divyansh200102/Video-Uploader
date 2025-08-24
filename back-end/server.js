@@ -1,22 +1,30 @@
 import express from 'express';
 import chalk from 'chalk';
-import cors from 'cors';
 import dotenv from 'dotenv';
 import fileUpload from 'express-fileupload';
 
 import { indexRoute } from './api/v1/routes/index.js';
 import { Error404 } from './utils/middlewares/404.js';
 import { createConnection } from './utils/db/connection.js';
+const cors = require('cors');
+
 
 dotenv.config();
 
 const app = express();
 
-app.use(cors({
-  origin: "https://video-uploader-frontend-lime.vercel.app", // allow your frontend
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type", "Authorization"]
-}));
+const corsOptions = {
+  origin: [
+    'https://video-uploader-frontend-qf3tpepiv.vercel.app',
+    'http://localhost:3000', // for local development
+    'https://your-custom-domain.com' // if you have a custom domain
+  ],
+  credentials: true,
+  optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
+
 
 app.use(express.json());
 app.use(fileUpload({ limits: { fileSize: 5 * 1024 * 1024 } }));
