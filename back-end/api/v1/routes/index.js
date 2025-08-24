@@ -1,23 +1,19 @@
-// back-end/api/v1/routes/index.js
 import express from 'express';
 import { auth } from '../../../utils/middlewares/auth.js';
-
-// Safe imports for routers
 import userRoutes from './user-routes.js';
 import videoRoutes from './video-routes.js';
 
 export const indexRoute = express.Router();
 
-// Sanity checks to catch undefined imports
+console.log('userRoutes is:', userRoutes);
+console.log('videoRoutes is:', videoRoutes);
+
 if (!userRoutes) {
   throw new Error('userRoutes import failed! Make sure user-routes.js has `export default router;`');
 }
 if (!videoRoutes) {
   throw new Error('videoRoutes import failed! Make sure video-routes.js has `export default router;`');
 }
-
-console.log('userRoutes is:', userRoutes);
-console.log('videoRoutes is:', videoRoutes);
 
 // User routes
 indexRoute.use('/user', userRoutes);
